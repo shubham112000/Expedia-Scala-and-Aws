@@ -1,0 +1,174 @@
+1.   What are the types of the following expressions?
+Ans:
+1 – Int
+1.7 – double
+1.0 – double
+‘h’ – char
+“hi” – String
+5/8 – Int
+1 + 0.5 – double
+7*0.5 – double
+“hi”.length – Int
+
+2.   Do the following 8-bit binary arithmetic by hand.
+•   101011012 + 110101002
+•   001111102 + 001110112
+•   010010102 ∗ 001100102
+Ans 2. 
+a)	110000101
+b)	01111001
+c)	0111001110100
+
+3.   Convert the following decimal values to binary (8-bit), hex (2-digit), and octal (3-digit).
+•   7
+•   18
+•   57
+•   93
+•   196
+
+Ans 3.
+a)	7 –> Binary – 00000111, Hex – 07, Octal – 007
+b)	18 -> Binary – 00010010, Hex – 12, Octal – 022
+c)	57 -> Binary – 00111001, Hex – 39, Octal – 071
+d)	93 -> Binary – 01011101, Hex – 5D, Octal – 135
+e)	196 -> Binary – 11000100, Hex – C4, Octal – 304
+
+4.   Write a script that will calculate how far a projectile will go given a launch speed and an angle ignoring friction. Assume that the projectile is launched from ground level with a certain speed in m/s and at a certain angle in radians. Use the fact that acceleration due to gravity is 9.8m/s2
+. The steps in doing this would be to calculate the speed parallel and perpendicular to the ground with math.sin and math.cos, then figure out how long it takes for the projectile to slow to a vertical speed of zero (v = v0 − at) and use double that time as how long it stays in the air.
+
+Code:
+package scalaPractice
+
+
+import scala.io.StdIn._
+import scala.collection.immutable._
+
+object HelloWorld {
+    def main(args: Array[String]): Unit = {
+
+
+
+
+        println("Enter speed in m/s:");
+        val launchSpeed = readDouble();
+        println("Enter projectile angle in degrees(greater than zero): ");
+        val angle = math.toRadians(readDouble());
+
+        val horizontalSpeed = launchSpeed * math.cos(angle);
+        val verticalSpeed = launchSpeed * math.sin(angle);
+        val timeInAir = 2 * verticalSpeed / 9.8;
+        val horizontalDistance = horizontalSpeed * timeInAir;
+
+        println("Horizontal distance covered in meter is "+horizontalDistance+"m");
+
+
+    }
+}
+
+Output:
+ 
+
+5.   In the REPL, declare a variable with the type String that has the name str. Give it whatever value of string you want. On the next line, type str. then hit tab to see the methods for String. By playing around with the REPL try to figure out what the following methods do.
+•     toUpperCase
+•     trim
+•     substring – This method takes two Int arguments.
+•     replace – This method can be called with two Char arguments or two String arguments.
+
+Ans:
+a)	toUppercase – Converts entire string to uppercase.
+b)	Trim – Removes the leading and trailing spaces in a string.
+c)	Substring – Gives a substring between the 2 indices given (first one is inclusive; second one is not)
+d)	Replace – Replace the first argument in the string with the second argument.
+Code:
+package scalaPractice
+
+
+import scala.io.StdIn._
+import scala.collection.immutable._
+
+object HelloWorld {
+    def main(args: Array[String]): Unit = {
+        val myString="   hello ";
+        println(myString.toUpperCase());
+        println(myString.trim);
+        println(myString.substring(4,8));
+        println(myString.replace('l','p'));
+
+    }
+}
+Output: 
+
+
+6.   Using Scala as a calculator, figure out how much you must make each year to bring home
+  $100,000 assuming a 27% tax rate.
+Code:
+package scalaPractice
+
+
+import scala.io.StdIn._
+import scala.collection.immutable._
+
+object HelloWorld {
+    def main(args: Array[String]): Unit = {
+
+        val bringHome=100000;
+        val tax=0.27;
+        var requiredEarn=bringHome/tax;
+        println("Your Income should be "+requiredEarn);
+
+
+    }
+}
+
+
+ 
+7.   Write Boolean expressions for the following:
+•   Assume you have a variable called age. Tell if the person is old enough to legally drink.
+•   Given a height in inches, tell if a person can ride an amusement park ride that requires riders
+to be between 48” and 74”
+Code:
+package scalaPractice
+
+
+import scala.io.StdIn._
+import scala.collection.immutable._
+
+object HelloWorld {
+    def main(args: Array[String]): Unit = {
+        
+
+        var age=readInt();
+        val response1=if(age>=21)"You can drink"else "You can't drink";
+
+        var height=readInt();
+        val response2=if(height>=48 && height<=74)"You can ride"else "You can't ride";
+        println(response1);
+        println(response2);
+    }
+}
+
+
+ 
+8.   The reverse method can be called on a String. Use this to write a script where the user inputs a word (use readLine) and you tell them whether or not it is a palindrome.
+Code:
+package scalaPractice
+
+
+import scala.io.StdIn._
+import scala.collection.immutable._
+
+object HelloWorld {
+    def main(args: Array[String]): Unit = {
+        var myString=readLine();
+        var reverseString=myString.reverse;
+        if(myString==reverseString){
+            println("String is palindrome");
+        }
+        else{
+            println("String is not palindrome");
+        }
+    }
+}
+
+ 
+
