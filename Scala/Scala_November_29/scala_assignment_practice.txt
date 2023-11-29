@@ -1,0 +1,330 @@
+//assignment-02
+
+1.   Write a function to find the if an entered string is a palindrome or not.
+Code:
+
+package scalaPractice
+
+import scala.io.StdIn._
+
+case object Main{
+  def isPalindrome(s:String):Boolean={
+    val rev=s.reverse;
+    if(rev==s){
+      return true
+    }
+    else{
+      return false
+    }
+  }
+  def main(args:Array[String]):Unit={
+    val s:String=readLine()
+    println(s"is string ${s} palindrome or not: "+isPalindrome(s));
+  }
+}
+
+2.   Write a function to find greatest of 3 numbers.
+Code:
+package scalaPractice
+
+import scala.io.StdIn._
+
+case object Main{
+  def findGreat(a:Int,b:Int,c:Int):Int={
+    return a max (b max c);
+  }
+  def main(args:Array[String]):Unit={
+    println("Enter 3 numbers a,b and c: ");
+    val a=readInt();
+    val b=readInt();
+    val c=readInt();
+
+    println(s"Greatest among $a,$b and $c is: "+findGreat(a,b,c));
+
+
+  }
+}
+
+
+
+
+3.   Write a function to find the factorial of a given number
+Code:
+package scalaPractice
+
+import scala.io.StdIn._
+
+case object Main{
+  def fact(n: Int): Int = {
+    if (n == 0 || n == 1) {
+      1
+    }
+    else fact(n - 1) * n;
+  }
+  def main(args:Array[String]):Unit={
+    println("Enter the value of n: ");
+    val n=readInt();
+    println(s"factorial of ${n} is: "+fact(n));
+  
+  }
+}
+
+4.   Write a function to find the Fibonacci series for a given number.
+Code:
+package scalaPractice
+
+import scala.io.StdIn._
+
+case object Main{
+  def fib(x:Int):Unit={
+    var n=x
+    var f1 = 0;
+    var f2 = 1;
+    println("fibonacci Series: ");
+    print(s"${f1} ${f2}");
+    n = n - 2;
+
+    while (n >= 0) {
+      print(s" ${f1 + f2}");
+      var temp = f1 + f2;
+      f1 = f2;
+      f2 = temp;
+      n -= 1;
+    }
+  }
+  def main(args:Array[String]):Unit={
+    println("Enter the value of n: ");
+    val n=readInt();
+    fib(n);
+  }
+}
+
+5.Write a function to solve the quadratic equation for real values. Your solution should return a (Double, Double) of the two roots.
+Code:
+package scalaPractice
+import scala.io.StdIn._
+
+case object Main{
+
+  def calCulateD(a: Double, b: Double, c: Double):Double={
+    return b*b-(4*a*c);
+  }
+
+  def roots(a: Double, b: Double, c: Double): (Double,Double) = {
+
+
+    val d = calCulateD(a, b, c);
+
+    val t1 = (b * (-1)) / (2 * a)
+    var t2 = Math.sqrt(d)/(2*a);
+    return (t1+t2,t1-t2);
+
+  }
+
+
+
+  def main(args:Array[String]):Unit={
+    println("Enter three numbers a,b,c: ");
+    val a=readDouble();
+    val b=readDouble();
+    val c=readDouble();
+    println("Roots of equation are: "+roots(a,b,c));
+
+  }
+}
+
+6.Write a set of functions to do the following operations on a 2-tuples of Int as if they were the numerator and denominator of rational numbers. (a) Addition (b) Subtraction (c) Multiplication (d) Division For example, the function for addition might start off as def add(n1:(Int, Int), n2:(Int, Int)):(Int, Int).
+
+Code:
+package scalaPractice
+
+
+
+import scala.io.StdIn._
+
+case object Main{
+
+  def add(n1:(Int,Int),n2:(Int,Int)):(Int,Int)={
+    return ((n1._1*n2._2)+(n1._2*n2._1),n1._2*n2._2);
+  }
+
+  def sub(n1: (Int, Int), n2: (Int, Int)): (Int, Int) = {
+    return ((n1._1 * n2._2) - (n1._2 * n2._1), n1._2 * n2._2);
+  }
+
+  def mul(n1: (Int, Int), n2: (Int, Int)): (Int, Int) = {
+    return (n1._1 * n2._1, n1._2 * n2._2);
+  }
+
+  def div(n1: (Int, Int), n2: (Int, Int)): (Int, Int) = {
+    return (n1._1 * n2._2, n1._2 * n2._1);
+  }
+
+
+  def main(args:Array[String]):Unit={
+    println("Enter numerator and denominator for n1: ");
+    val a=readInt();
+    val b=readInt();
+
+    println("Enter numerator and denominator for n2: ");
+    val c=readInt();
+    val d=readInt();
+
+
+    println("After addition of n1 and n2: "+add((a,b),(c,d)));
+    println("After subtraction of n1 and n2: "+sub((a,b),(c,d)));
+    println("After multiplication of n1 and n2: "+mul((a,b),(c,d)));
+    println("After division of n1 and n2: "+div((a,b),(c,d)));
+
+  }
+}
+
+
+
+//w3 resource
+1. Write a Scala program that creates a class called Person with properties like name, age and country. Implement methods to get and set properties.
+package scalaPractice
+
+class Person(private var name:String,private var age:Int,private var country:String) {
+  def getName:String=name;
+  def getAge:Int=age;
+  def getCountry:String=country;
+
+  def setName(name:String):Unit=this.name=name;
+  def setAge(age:Int):Unit=this.age=age;
+  def setCountry(country:String):Unit=this.country=country;
+}
+object Person{
+  def main(args:Array[String]):Unit={
+    var p=new Person("Shubh",21,"India");
+    p.setName("Shubham");
+    p.setAge(23);
+
+    println(s"${p.getName} ${p.getAge} ${p.getCountry}");
+  }
+}
+
+2. Write a Scala program that creates a subclass Student that extends the Person class. Add a property called grade and implement methods to get and set it.
+Code:
+package scalaPractice
+
+class Person(private var name:String,private var age:Int,private var country:String) {
+  def getName:String=name;
+  def getAge:Int=age;
+  def getCountry:String=country;
+
+  def setName(name:String):Unit=this.name=name;
+  def setAge(age:Int):Unit=this.age=age;
+  def setCountry(country:String):Unit=this.country=country;
+}
+
+class Student(name:String,age:Int,country:String,private var grade:String) extends Person (name,age,country){
+  def getGrade:String=this.grade
+
+  def setGrade(grade:String):Unit={
+    this.grade=grade;
+  }
+}
+
+object NewMain{
+  def main(args:Array[String]):Unit={
+
+    var student=new Student("Aakash",21,"India","A");
+    println("Original Student:")
+    println(s"Name: ${student.getName}")
+    println(s"Age: ${student.getAge}")
+    println(s"Country: ${student.getCountry}")
+    println(s"Grade: ${student.getGrade}")
+
+    student.setName("Rachit")
+    student.setAge(20)
+    student.setCountry("Canada")
+    student.setGrade("B")
+
+    println("\nUpdated Student:")
+    println(s"Name: ${student.getName}")
+    println(s"Age: ${student.getAge}")
+    println(s"Country: ${student.getCountry}")
+    println(s"Grade: ${student.getGrade}")
+  }
+}
+
+3. Write a Scala program that creates an object MathUtils with a static method factorial that calculates the factorial of a given number.
+Code:
+package scalaPractice
+
+import scala.io.StdIn.readInt
+
+object MathFunctions{
+  def fact(num:Int):Int={
+    if(num==0||num==1)
+        return num;
+    else
+      return fact(num-1)*num;
+  }
+}
+
+object MyMain {
+  def main(args:Array[String]):Unit={
+    println("Enter the number: ");
+    val num:Int=readInt;
+    println(s"Factorial of given number $num is ${MathFunctions.fact(num)}");
+  }
+}
+
+
+4. Write a Scala program that creates an abstract class Shape with an abstract method area. Implement subclasses Rectangle and Circle that override the area method.
+Code:
+package scalaPractice
+
+abstract class Shape {
+  def area:Double;
+  def perimeter:Double;
+}
+
+class Rectangle(private var width:Double,private var height:Double) extends Shape{
+  override def area: Double =width*height;
+  override def perimeter: Double = 2*(height+width);
+
+  def setWidth(width:Double):Unit={
+    this.width=width;
+  }
+  def setHeight(height:Double):Unit={
+    this.height=height;
+  }
+  def getWidth:Double=this.width;
+  def getHeight:Double=this.height;
+
+}
+class Circle(private var radius:Double) extends Shape{
+  override def area: Double = Math.PI*radius*radius;
+
+  override def perimeter: Double = 2*Math.PI*radius;
+
+  def getRadius:Double=this.radius;
+  def setRadius(radius:Double):Unit={
+    this.radius=radius
+  }
+
+}
+object Shape{
+
+  def main(args:Array[String]):Unit={
+    val rectangle=new Rectangle(2.0,7.0);
+    println(s"height and width are: ${rectangle.getHeight}, ${rectangle.getWidth}");
+    println(s"area of rectangle is: "+rectangle.area);
+    println(s"perimeter of rectangle is: "+rectangle.perimeter);
+
+    println("\n");
+
+    val circle=new Circle(2.0);
+    println(s"radius of circle is: "+circle.getRadius);
+    println(s"area of circle is: "+circle.area);
+    println(s"perimeter of circle is: "+circle.perimeter);
+
+  }
+}
+
+
+
+
