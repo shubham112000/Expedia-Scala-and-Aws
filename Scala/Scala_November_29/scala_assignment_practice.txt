@@ -325,6 +325,42 @@ object Shape{
   }
 }
 
+5. Write a Scala program that creates a class BankAccount with properties accountNumber and balance. Implement methods to deposit and withdraw money from the account.
+Code:
+package scalaPractice
 
+import scala.io.StdIn._
+
+
+class BankAccount( val accountNumber:String, var balance:Double){
+  def deposit(amount:Double):Unit={
+    balance+=amount
+    println("Amount is deposited successfully");
+  }
+
+  def withdraw(amount:Double):Unit={
+    if(balance<amount){
+      println("Amount can't be withdraw");
+    }
+    else{
+      balance-=amount;
+      println("Amount is withdraw");
+    }
+  }
+}
+
+
+case object Main{
+
+
+  def main(args: Array[String]): Unit = {
+    val account = new BankAccount("123323244", 1000);
+    println(s"Account Number: ${account.accountNumber}")
+    println(s"Initial Balance: ${account.balance}")
+    account.deposit(500.0)
+    account.withdraw(200.0)
+    account.withdraw(2000.0)
+  }
+}
 
 
