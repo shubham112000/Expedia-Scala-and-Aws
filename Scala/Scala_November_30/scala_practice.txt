@@ -1,0 +1,363 @@
+1. Write a Scala program to create an empty set and add elements to it.
+Code:
+package scalaPractice
+
+object SetOpertaion {
+    def main(args:Array[String]):Unit={
+      var set1=scala.collection.mutable.Set[Int]();
+      set1+=1;
+      set1+=2;
+      set1+=2;
+      set1+=3;
+      println(set1);
+
+      
+    }
+}
+
+2. Write a Scala program to create a set and find the union of two sets.
+3. Write a Scala program to create a set and find the intersection of two sets.
+4. Write a Scala program to create a set and find the difference between two sets.
+5. Write a Scala program to check if a set is empty or not.
+6. Write a Scala program to check if a given element exists in a set.
+Code:
+package scalaPractice
+
+object SetOpertaion {
+    def main(args:Array[String]):Unit={
+      var set1=scala.collection.mutable.Set[Int]();
+      set1+=1;
+      set1+=2;
+      set1+=2;
+      set1+=3;
+      println(set1);
+
+      var set2=scala.collection.mutable.Set[Int]();
+      set2 += 1;
+      set2 += 2;
+      set2 += 2;
+      set2 += 3;
+      set2+=4;
+      println(set2);
+
+      val unionSet=set1.union(set2);
+      println(unionSet)
+
+      val intersectionSet=set1.intersect(set2);
+      println(intersectionSet);
+
+      val differenceSet=set2.diff(set1);
+      println(differenceSet);
+
+      if(set1.isEmpty){
+        println("Set 1 is empty");
+      }
+      else{
+        println("Set 1 is not empty");
+      }
+
+      if(set1(4)){
+        println("4 exists");
+      }else{
+        println("4 doesn't exists");
+      }
+
+      
+    }
+}
+
+7.Write a Scala program to create a set and find the second largest element in the set.
+
+Code:
+package scalaPractice
+
+object SetOpertaion {
+    def main(args:Array[String]):Unit={
+      var set1=scala.collection.mutable.Set[Int]();
+      set1+=1;
+      set1+=2;
+      set1+=4;
+      set1+=3;
+      println(set1);
+
+      val ele=set1.toList.sorted.reverse(1);
+      println("Second highest element in set "+ele);
+
+
+
+    }
+}
+
+8.Write a Scala program to find minimum subarray sum of specified size in a given array of integers.
+Code:
+package scalaPractice
+
+object ArrayOpertaion {
+    def main(args:Array[String]):Unit={
+
+      val myArray=Array(1,2,3,4,5,6,7,8,9,10);
+      val size=4;
+      var miniSum=Int.MaxValue
+      for(i<-0 to (myArray.length-size)){
+          var currSum=0;
+          for(j<-i until  i+size ){
+              currSum+=myArray(j)
+          }
+          miniSum=currSum min(miniSum);
+      }
+      println(miniSum)
+
+
+    }
+}
+
+9. Write a Scala program to find contiguous subarray within a given array of integers which has the largest sum.
+Code:
+package scalaPractice
+
+object ArrayOpertaion {
+    def main(args:Array[String]):Unit={
+
+      val myArray=Array(1, 2, -3, -4, 0, 6, 7, 8, 9);
+
+
+      var currSum=0;
+      var maxSum=Int.MinValue;
+
+      for(i<-myArray){
+        currSum+=i;
+        if(currSum>maxSum){
+          maxSum=currSum;
+        }
+        if(currSum<0){
+          currSum=0;
+        }
+      }
+      println(maxSum)
+      
+
+
+    }
+}
+10. Write a Scala program to find maximum difference between two elements in a given array of integers such that smaller element appears before larger element.
+Code:
+package scalaPractice
+
+object ArrayOpertaion {
+    def main(args:Array[String]):Unit={
+
+      val myArray=Array(-2, 3, 1, 7, 9, 5, 11, 3, 15 );
+      var currMin=Int.MaxValue
+      var maxDiff=Int.MinValue;
+      for(i<-0 until  myArray.length){
+        if(myArray(i)<currMin){
+          currMin=myArray(i);
+        }
+        if(currMin<myArray(i)){
+            maxDiff=maxDiff max (myArray(i)-currMin);
+        }
+      }
+      println(maxDiff);
+
+
+
+
+
+    }
+}
+
+11. Write a Scala program to replace every element with the next greatest element (from right side) in a given array of integers. There is no element next to the last element, therefore replace it with -1.
+Code:
+package scalaPractice
+
+import scala.util.control.Breaks.{break, breakable}
+
+object ArrayOpertaion {
+    def main(args:Array[String]):Unit={
+
+      val myArray=Array(1, 2, -3, -4, 0, 6, 7, 8, 9);
+
+      println("Original Array: "+myArray.mkString(", "));
+
+      var res:Array[Int]=Array.fill(myArray.length)(-1);
+
+      for(i<-0 until(myArray.length)){
+        breakable {
+          for (j <- i until (myArray.length)) {
+            if (myArray(i) < myArray(j)) {
+              res(i) = myArray(j);
+              break
+            }
+          }
+        }
+      }
+      println("Next greater Array: "+res.mkString(", "));
+
+
+
+
+    }
+}
+
+12. Write a Scala program to find all pairs of elements in an array whose sum is equal to a specified number.
+
+Code:
+package scalaPractice
+
+import scala.io.StdIn.readInt
+
+
+object ArrayOpertaion {
+    def main(args:Array[String]):Unit={
+
+      val myArray=Array.fill(5)(readInt);
+      val targetSum=readInt();
+      println("Original Array: "+myArray.mkString(", "));
+      println("target Sum: "+targetSum);
+      println("Pairs with target sum: ");
+      for(i<-0 until(myArray.length)){
+        for(j<-(i+1) until(myArray.length)){
+          if(myArray(i)+myArray(j)==targetSum){
+            println(s"${myArray(i)} ${myArray(j)}");
+          }
+        }
+      }
+
+
+
+    }
+}
+
+13.Write a Scala program to create an empty map and add key-value pairs to it.
+Code:
+package scalaPractice
+
+import scala.io.StdIn.readInt
+
+
+object MapOperation {
+    def main(args:Array[String]):Unit={
+
+      val myMap=scala.collection.mutable.HashMap[Int,String]();
+      myMap+=(1->"red");
+      myMap+=(2->"green");
+      myMap+=(3->"black");
+
+      println("Map: "+myMap);
+	
+
+    }
+}
+14. Write a Scala program to create a map and merge it with another map.
+Code:
+package scalaPractice
+
+import scala.io.StdIn.readInt
+
+
+object MapOperation {
+    def main(args:Array[String]):Unit={
+
+      val myMap1=scala.collection.mutable.HashMap[Int,String]();
+      myMap1+=(1->"red");
+      myMap1+=(2->"green");
+      myMap1+=(3->"black");
+      myMap1+=(0->"white");
+      println("Map1: "+myMap1);
+
+      val myMap2=scala.collection.mutable.HashMap[Int,String]();
+      myMap2+=(4->"Shubham");
+      myMap2+=(5->"Jim");
+      myMap2+=(0->"green");
+      println("Map2: "+myMap2);
+
+      val unionMap=myMap1++myMap2;
+      println("Union of map1 and map2: "+unionMap);
+
+
+
+    }
+}
+
+15. Write a Scala program to create a map and find the difference between two maps.
+Code:
+package scalaPractice
+
+import scala.io.StdIn.readInt
+
+
+object MapOperation {
+    def main(args:Array[String]):Unit={
+
+      val myMap1=scala.collection.mutable.HashMap[Int,String]();
+      myMap1+=(1->"red");
+      myMap1+=(2->"green");
+      myMap1+=(3->"black");
+      myMap1+=(0->"white");
+      println("Map1: "+myMap1);
+
+      val myMap2=scala.collection.mutable.HashMap[Int,String]();
+      myMap2+=(1->"Shubham");
+      myMap2+=(2->"Jim");
+      myMap2+=(0->"green");
+      println("Map2: "+myMap2);
+
+      val difference=myMap1--myMap2.keySet;
+      println(s"The difference between the maps is: $difference")
+
+
+
+    }
+}
+
+16.Write a Scala program to create a map and sort it by values in ascending order.
+Code:
+package scalaPractice
+
+import scala.io.StdIn.readInt
+
+
+object MapOperation {
+    def main(args:Array[String]):Unit={
+
+      val myMap:Map[String,Int]=Map("Red" -> 1, "Green" -> 4, "Blue" -> 2, "Orange" -> 3);
+
+      println("Map: "+myMap);
+
+
+      println("Sorted map: ");
+      val ans=myMap.toList.sortBy(x=>x._1).toMap;
+      println(ans);
+
+    }
+}
+17.Write a Scala program to count the number of occurrences of each element in a given list.
+Code:
+package scalaPractice
+
+import scala.io.StdIn.readInt
+
+
+object MapOperation {
+    def main(args:Array[String]):Unit={
+      println("Enter the size of list: ");
+      val n=readInt();
+      println("Enter the list elements: ");
+      val myList=List.fill(n)(readInt());
+      println(myList)
+      var myMap=scala.collection.mutable.HashMap[Int,Int]();
+      myList.foreach(x=>{
+        if(myMap.contains(x)){
+          var count=myMap(x)+1;
+          myMap+=(x->count)
+        }
+        else{
+          myMap+=(x->1);
+        }
+      })
+      println("printing map contains list elements with it's occurrence count ");
+      println(myMap);
+
+
+    }
+}
